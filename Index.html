@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hectare → Bigha / Biswa (Mehnagar, Azamgarh)</title>
+  <style>
+    :root{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;--bg:#f7fafc;--card:#ffffff;--accent:#2563eb}
+    body{margin:0;background:var(--bg);color:#0f172a}
+    .wrap{max-width:700px;margin:28px auto;padding:18px}
+    .card{background:var(--card);border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.08);padding:18px}
+    h1{font-size:20px;margin:0 0 12px}
+    label{display:block;font-size:14px;color:#334155;margin:12px 0 6px}
+    input[type=number]{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef8;font-size:15px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .out{background:#f1f5f9;padding:14px;border-radius:8px}
+    button{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer;margin-top:16px}
+    small{color:#475569}
+    footer{margin-top:16px;font-size:13px;color:#475569}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Hectare → Bigha / Biswa (Mehnagar, Azamgarh)</h1>
+
+      <label for="hectares">Enter Hectares (ha)</label>
+      <input id="hectares" type="number" step="any" value="1" />
+
+      <div class="grid">
+        <div class="out">
+          <div style="font-size:13px;margin-bottom:6px">Result — Bigha</div>
+          <div id="resultBigha" style="font-size:20px;font-weight:600">—</div>
+        </div>
+        <div class="out">
+          <div style="font-size:13px;margin-bottom:6px">Result — Biswa</div>
+          <div id="resultBiswa" style="font-size:20px;font-weight:600">—</div>
+        </div>
+      </div>
+
+      <button id="calc">Convert</button>
+
+      <footer>Note: In Mehnagar (Azamgarh) region, 1 hectare ≈ 4 bigha, and 1 bigha = 20 biswa.</footer>
+    </div>
+  </div>
+
+  <script>
+    function calculate(){
+      const ha = parseFloat(document.getElementById('hectares').value || 0);
+      const bighaPerHectare = 4; // Local assumption: 1 ha = 4 bigha
+      const biswaPerBigha = 20;  // 1 bigha = 20 biswa
+
+      const bigha = ha * bighaPerHectare;
+      const biswa = bigha * biswaPerBigha;
+
+      document.getElementById('resultBigha').textContent = (Math.round(bigha*1000)/1000).toLocaleString();
+      document.getElementById('resultBiswa').textContent = (Math.round(biswa*1000)/1000).toLocaleString();
+    }
+
+    document.getElementById('calc').addEventListener('click', calculate);
+    calculate();
+  </script>
+</body>
+</html>
